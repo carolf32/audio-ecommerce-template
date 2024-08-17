@@ -2,8 +2,16 @@ import { MdOutlineEmail } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export const SignUpPage = () => {
+  const { register, handleSubmit } = useForm();
+
+  const submit = (formData) => {
+    console.log(formData);
+  };
+
   return (
     <main className="bg-[url('../assets/theme2.jpg')] bg-cover h-lvh bg-center overflow-hidden">
       <div className="flex flex-col text-center pt-16 pb-20 sm:text-left sm:pl-6 ">
@@ -47,9 +55,12 @@ export const SignUpPage = () => {
 
         <p className="text-grey-0 text-sm text-center pt-2">
           If you have an account{" "}
-          <a className="text-green-default font-semibold cursor-pointer text-sha">
+          <Link
+            to="/login"
+            className="text-green-default font-semibold cursor-pointer text-sha"
+          >
             Sign in here
-          </a>
+          </Link>
         </p>
       </div>
     </main>

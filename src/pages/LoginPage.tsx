@@ -2,6 +2,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
   return (
@@ -43,9 +44,12 @@ export const LoginPage = () => {
 
         <p className="text-grey-0 text-sm text-center pt-2">
           If you don't have an account{" "}
-          <a className="text-green-default font-semibold cursor-pointer">
+          <Link
+            to="signup"
+            className="text-green-default font-semibold cursor-pointer"
+          >
             Sign up here
-          </a>
+          </Link>
         </p>
       </div>
     </main>

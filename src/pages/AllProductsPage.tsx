@@ -3,13 +3,13 @@ import headphone from "../assets/product-image/headphone-white.jpg";
 import { HeaderTemplateUser } from "../components/HeaderTemplateUser";
 import { Link } from "react-router-dom";
 
-export const HeadphonesPage = () => {
+export const AllProductsPage = () => {
   return (
     <div>
       <HeaderTemplateUser />
 
       <div className="flex flex-col gap-1 m-4">
-        <p className="text-sm">Headphones</p>
+        <p className="text-sm">All Products</p>
         <h2 className="font-semibold text-xl pb-3">TMA Wireless</h2>
       </div>
 
@@ -23,7 +23,7 @@ export const HeadphonesPage = () => {
         </div>
         <div className="hover:text-green-default cursor-pointer">Newest</div>
         <Link
-          to="/headphones"
+          to="/products"
           className="hover:text-green-default cursor-pointer"
         >
           See All
