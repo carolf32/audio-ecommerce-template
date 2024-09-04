@@ -5,8 +5,6 @@ export interface registerFormData {
   password: string;
   confirmPassword: string;
   email: string;
-  address: string;
-  contact: number;
 }
 
 export interface loginFormData {
@@ -17,8 +15,6 @@ export interface loginFormData {
 export interface User {
   name: string;
   email: string;
-  address: string;
-  contact: number;
 }
 
 export interface UserContextProps {
