@@ -1,9 +1,12 @@
 import { CiSearch } from "react-icons/ci";
+import { useUserContext } from "../../hooks/useUserContext";
 
 export const SearchHomepage = () => {
+  const { user } = useUserContext();
+
   return (
     <div className="flex flex-col gap-1 m-4">
-      <p className="text-sm">Hi, Person!</p>
+      <p className="text-sm">Hi, {user ? <p>{user.name}</p> : "guest"}</p>
       <h2 className="font-semibold text-xl pb-3">
         What are you looking for today?
       </h2>

@@ -2,14 +2,32 @@ import { MdOutlineEmail } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { BsHouse } from "react-icons/bs";
+import { BsTelephone } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormSchema } from "../schemas/FormSchema";
+import { registerFormData } from "../interfaces/user.interface";
+import { useUserContext } from "../hooks/useUserContext";
+import { useState } from "react";
 
 export const SignUpPage = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<registerFormData>({ resolver: zodResolver(FormSchema) });
+  const { userRegister } = useUserContext();
 
-  const submit = (formData) => {
-    console.log(formData);
+  const submit = (formData: registerFormData) => {
+    userRegister(formData);
+  };
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -17,40 +35,69 @@ export const SignUpPage = () => {
       <div className="flex flex-col text-center pt-16 pb-20 sm:text-left sm:pl-6 ">
         <h1 className=" text-grey-1 text-6xl font-semibold pb-4 ">Audio</h1>
         <h3 className=" text-grey-1 font-semibold ">
-          It's modular and designed do last
+          It's modular and designed to last
         </h3>
       </div>
 
       <div className="pt-10 w-auto md:w-2/4 md:pt-0">
-        <form className="flex flex-col gap-4 w-auto relative">
+        <form
+          onSubmit={handleSubmit(submit)}
+          className="flex flex-col gap-4 w-auto relative"
+        >
           <MdOutlineEmail className="absolute top-2.5 left-5 text-grey-3 size-5" />
           <input
             type="text"
+            {...register("email")}
             placeholder="Email"
             className="p-2 mx-3  rounded-xl pl-10 outline-none"
           ></input>
 
           <GoLock className="absolute top-16 left-5 text-grey-3 size-5" />
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
+            {...register("password")}
             placeholder="Create a password"
             className=" p-2 mx-3 rounded-xl pl-10 outline-none"
+            required
           ></input>
-          <FaRegEyeSlash className="absolute top-16 right-6 text-grey-3 size-5 " />
-          {/* <FaRegEye /> */}
+          {passwordVisible ? (
+            <FaRegEye
+              className="absolute top-16 right-6 text-grey-3 size-5 "
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <FaRegEyeSlash
+              className="absolute top-16 right-6 text-grey-3 size-5 "
+              onClick={togglePasswordVisibility}
+            />
+          )}
 
-          <GoLock className="absolute bottom-16 left-5 text-grey-3 size-5 ." />
+          <GoLock className="absolute left-5 top-[7.5rem] text-grey-3 size-5 " />
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
+            {...register("confirmPassword")}
             placeholder="Repeat the password"
             className="p-2 mx-3 rounded-xl pl-10 outline-none"
+            required
           ></input>
-          <FaRegEyeSlash className="absolute bottom-16 right-6 text-grey-3 size-5" />
-          {/* <FaRegEye /> */}
+          {passwordVisible ? (
+            <FaRegEye
+              className="absolute top-[7.5rem] right-6 text-grey-3 size-5"
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <FaRegEyeSlash
+              className="absolute top-[7.5rem] right-6 text-grey-3 size-5"
+              onClick={togglePasswordVisibility}
+            />
+          )}
 
-          <a className="text-grey-0 p-2 mx-3 rounded-xl font-semibold bg-green-default text-center cursor-pointer">
+          <button
+            type="submit"
+            className="text-grey-0 p-2 mx-3 rounded-xl font-semibold bg-green-default text-center cursor-pointer"
+          >
             Sign Up
-          </a>
+          </button>
         </form>
 
         <p className="text-grey-0 text-sm text-center pt-2">
@@ -60,6 +107,10 @@ export const SignUpPage = () => {
             className="text-green-default font-semibold cursor-pointer text-sha"
           >
             Sign in here
+          </Link>{" "}
+          or{" "}
+          <Link to="/" className="font-semibold">
+            continue as a guest
           </Link>
         </p>
       </div>
