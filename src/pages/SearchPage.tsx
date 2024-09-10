@@ -1,6 +1,5 @@
-import headphone from "../assets/product-image/headphone-white.jpg";
 import { HeaderTemplateUser } from "../components/HeaderTemplateUser";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product.interface";
 import axios from "axios";

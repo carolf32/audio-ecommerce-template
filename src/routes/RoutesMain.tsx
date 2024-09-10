@@ -3,7 +3,6 @@ import { Homepage } from "../pages/Homepage";
 import { SignUpPage } from "../pages/SignUpPage";
 import { LoginPage } from "../pages/LoginPage";
 import { ProductPageFeat } from "../pages/ProductPageFeat";
-import { ProductPageSpecifications } from "../pages/ProductPageSpecifications";
 import { ProductPage } from "../pages/ProductPage";
 import { HeadphonesPage } from "../pages/HeadphonesPage";
 import { EarpadsPage } from "../pages/EarpadsPage";
