@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import headphone from "../../assets/product-image/headphone-white.jpg";
+import { useProducts } from "../../hooks/useProducts";
 
 export const HomeProducts = () => {
+  const { products } = useProducts();
+
   return (
     <div className="bg-grey-1 mt-5 rounded-t-3xl h-full pb-7">
       <div className="p-5 flex justify-evenly items-center flex-wrap gap-1">
@@ -39,31 +41,21 @@ export const HomeProducts = () => {
           See All
         </Link>
       </div>
+
       <div className="grid gap-4 max-[425px]:grid-cols-1  px-5 m-auto md:grid-cols-3 lg:grid-cols-4">
-        <div className="bg-white pt-0 mt-0 rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
-        <div className="bg-white rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
-        <div className="bg-white rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
-        <div className="bg-white rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
-        <div className="bg-white rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
-        <div className="bg-white rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
-          <img src={headphone} className="w-60 h-40 rounded-t-2xl" />
-          <p className="py-2">TMA-2 HD Wireless USD 350</p>
-        </div>
+        {products.map((product) => (
+          <Link to={`/products/${product.id}`} key={product.id}>
+            <div className="bg-white pt-0 mt-0 rounded-2xl flex flex-col text-center items-center cursor-pointer justify-center">
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-60 h-60 rounded-xl mt-2 object-cover"
+              />
+              <p className="py-2 font-bold">{product.name}</p>
+              <p className="mb-2">{`€ ${product.price.toFixed(2)}`}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

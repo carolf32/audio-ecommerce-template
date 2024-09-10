@@ -2,8 +2,6 @@ import { MdOutlineEmail } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { BsHouse } from "react-icons/bs";
-import { BsTelephone } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,6 +20,7 @@ export const SignUpPage = () => {
 
   const submit = (formData: registerFormData) => {
     userRegister(formData);
+    console.log(formData);
   };
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -90,6 +89,19 @@ export const SignUpPage = () => {
               className="absolute top-[7.5rem] right-6 text-grey-3 size-5"
               onClick={togglePasswordVisibility}
             />
+          )}
+
+          <input
+            type="text"
+            {...register("name")}
+            placeholder="First name"
+            className="p-2 mx-3  rounded-xl pl-10 outline-none"
+          ></input>
+
+          {errors.email && <span>{errors.email.message}</span>}
+          {errors.password && <span>{errors.password.message}</span>}
+          {errors.confirmPassword && (
+            <span>{errors.confirmPassword.message}</span>
           )}
 
           <button

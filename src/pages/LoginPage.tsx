@@ -33,7 +33,7 @@ export const LoginPage = () => {
       <div className="flex flex-col text-center pt-16 pb-20 sm:text-left sm:pl-6 ">
         <h1 className=" text-grey-1 text-6xl font-semibold pb-4  ">Audio</h1>
         <h3 className=" text-grey-1 font-semibold ">
-          It's modular and designed do last
+          It's modular and designed to last
         </h3>
       </div>
 
@@ -50,10 +50,6 @@ export const LoginPage = () => {
             required
             className="p-2 mx-3  rounded-xl pl-10 outline-none"
           ></input>
-          {errors.email?.message &&
-            typeof errors.email.message === "string" && (
-              <p>{errors.email.message}</p>
-            )}
 
           <GoLock className="absolute top-16 left-5 text-grey-3 size-5" />
           <input
@@ -74,21 +70,15 @@ export const LoginPage = () => {
               onClick={togglePasswordVisibility}
             />
           )}
-          {errors.password?.message &&
-            typeof errors.password.message === "string" && (
-              <p>{errors.password.message}</p>
-            )}
 
-          {/* <button className="text-grey-1 text-center font-semibold">
-            {" "}
-            Forgot Password
-          </button> */}
+          {errors.email && <span>{errors.email.message}</span>}
+          {errors.password && <span>{errors.password.message}</span>}
 
           <button
             type="submit"
             className="text-grey-0 p-2 mx-3 rounded-xl font-semibold bg-green-default text-center cursor-pointer"
           >
-            Sign Up
+            Sign In
           </button>
         </form>
 

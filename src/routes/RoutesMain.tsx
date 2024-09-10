@@ -10,6 +10,7 @@ import { EarpadsPage } from "../pages/EarpadsPage";
 import { ErrorPage } from "../pages/ErrorPage";
 import { AcessoriesPage } from "../pages/AcessoriesPage";
 import { AllProductsPage } from "../pages/AllProductsPage";
+import { SearchPage } from "../pages/SearchPage";
 
 const RoutesMain = () => {
   return (
@@ -17,17 +18,14 @@ const RoutesMain = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/:id" element={<ProductPage />} />
-      <Route path="/:id/features" element={<ProductPageFeat />} />
-      <Route
-        path="/:id/specifications"
-        element={<ProductPageSpecifications />}
-      />
+      <Route path="/products/:id" element={<ProductPage />} />
+      <Route path="/products/:id/features" element={<ProductPageFeat />} />
       <Route path="/headphones" element={<HeadphonesPage />} />
       <Route path="/earpads" element={<EarpadsPage />} />
       <Route path="/acessories" element={<AcessoriesPage />} />
       <Route path="/products" element={<AllProductsPage />} />
-      <Route path="*" element={<ErrorPage />}></Route>
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

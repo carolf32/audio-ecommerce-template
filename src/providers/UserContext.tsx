@@ -1,7 +1,8 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   UserContextProps,
   UserProviderProps,
@@ -9,6 +10,7 @@ import {
   registerFormData,
   loginFormData,
 } from "../interfaces/user.interface";
+import { AxiosError } from "axios";
 
 export const UserContext = createContext<UserContextProps | undefined>(
   undefined
@@ -22,10 +24,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       const { data } = await api.post("/home/signup", formData);
       navigate("/login");
-      console.log(data);
       toast.success("Account created successfully!");
     } catch (error) {
-      toast.error("Something went wrong");
+      if (error instanceof AxiosError) {
+        const message = error.response?.data?.message;
+        toast.error(message);
+      } else {
+        toast.error("An unexpected error ocurred");
+      }
       console.log(error);
     }
   };
@@ -34,13 +40,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       const { data } = await api.post("/home/login", formData);
       navigate("/");
-      console.log(data);
       setUser(data.user);
+      toast.success("Welcome!");
 
       localStorage.setItem("@TOKEN", data.token);
       localStorage.setItem("@USER", JSON.stringify(data.user));
     } catch (error) {
-      toast.error("Something went wrong");
+      if (error instanceof AxiosError) {
+        const message = error.response?.data?.message;
+        toast.error(message);
+      } else {
+        toast.error("An unexpected error ocurred");
+      }
       console.log(error);
     }
   };
