@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -20,9 +20,19 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("@USER");
+    const storedToken = localStorage.getItem("@TOKEN");
+
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      api.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+    }
+  }, []);
+
   const userRegister = async (formData: registerFormData) => {
     try {
-      const { data } = await api.post("/home/signup", formData);
+      await api.post("/home/signup", formData);
       navigate("/login");
       toast.success("Account created successfully!");
     } catch (error) {
