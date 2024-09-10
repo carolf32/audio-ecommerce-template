@@ -87,10 +87,12 @@ export const ProductPage = () => {
           spaceBetween={30}
           modules={[Pagination, Navigation]}
           className="mx-5"
-          style={{
-            "--swiper-pagination-color": "#0acf83",
-            "--swiper-navigation-color": "#0acf83",
-          }}
+          style={
+            {
+              "--swiper-pagination-color": "#0acf83",
+              "--swiper-navigation-color": "#0acf83",
+            } as React.CSSProperties
+          }
         >
           {product?.images.map((image, index) => (
             <SwiperSlide className="w-full h-[450px] object-cover">

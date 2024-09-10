@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, Parallax } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -42,10 +42,12 @@ export const BannerHomepage = () => {
         spaceBetween={30}
         modules={[Autoplay, Pagination, Navigation]}
         className="mx-5"
-        style={{
-          "--swiper-pagination-color": "#0acf83",
-          "--swiper-navigation-color": "#0acf83",
-        }}
+        style={
+          {
+            "--swiper-pagination-color": "#0acf83",
+            "--swiper-navigation-color": "#0acf83",
+          } as React.CSSProperties
+        }
       >
         <SwiperSlide className="w-full h-[450px] object-cover">
           <img
