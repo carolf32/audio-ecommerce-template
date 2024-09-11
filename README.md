@@ -8,7 +8,7 @@ The second part of the project, the stock application for this e-commerce can be
 - [x] signup, login and logout (or enter as a guest)
 - [x] add items on cart, see total, see your cart items
 
-## Features as a Employee
+## Features as a Employee (Admin)
 - [x] add new products, remove, update 
 - [x] signup, login and logout
 
